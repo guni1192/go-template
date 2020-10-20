@@ -1,3 +1,3 @@
-module github.com/guni1192/go-template
+module github.com/sai-lab/go-template
 
 go 1.15
