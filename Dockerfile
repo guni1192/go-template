@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine as builder
+FROM golang:1.15-alpine3.12 as builder
 
 WORKDIR /src
 
@@ -12,8 +12,8 @@ COPY . /src
 
 RUN make build
 
-FROM alpine:latest as runnner
+FROM alpine:3.12 as runner
 
 COPY --from=builder /src/bin/hello /usr/local/bin
 
-ENTRYPOINT /usr/local/bin/hello
+ENTRYPOINT ["hello"]
