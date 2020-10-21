@@ -1,8 +1,8 @@
-name: Unit Test
+name: Lint
 on: [push]
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -19,5 +19,7 @@ jobs:
           ${{ runner.os }}-go-
     - name: Run go mod download
       run: go mod download
-    - name: test
-      run: go test -v ./...
+    - name: Run go vet
+      run: go vet ./...
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@v2
