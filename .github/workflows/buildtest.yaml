@@ -1,0 +1,17 @@
+name: buildtest
+on: 
+  push:
+    branches:
+      - main
+
+     tags:
+      - *
+
+jobs:
+  runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build 
+        run: |
+          docker build 
+
