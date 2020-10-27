@@ -28,8 +28,8 @@ jobs:
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - name: build 
         run:
-          docker build -t ghcr.io/sai-lab/hello:${{ steps.vars.outputs.sha_short }} ..
+          docker build -t ghcr.io/sai-lab/hello:${{ steps.vars.outputs.sha_short }} .
       - name: push
         run: 
-          docker push ghcr.io/sai-lab/hello:${{ github.ref }}
+          docker push ghcr.io/sai-lab/hello:${{ steps.vars.outputs.sha_short }}
 
