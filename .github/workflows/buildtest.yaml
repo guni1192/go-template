@@ -2,7 +2,7 @@ name: buildtest
 on: 
   push:
     branches:
-      - master
+      - '*'
 
     tags:
       - '*'
