@@ -19,8 +19,8 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
       - name: build 
-      run:
-          docker build -t ghcr.io/sai-lab/hello:${{ github.ref }}
+        run:
+          docker build -t ghcr.io/sai-lab/hello:${{ github.ref }} .
       - name: push
         run: 
           docker push ghcr.io/sai-lab/hello:${{ github.ref }}
