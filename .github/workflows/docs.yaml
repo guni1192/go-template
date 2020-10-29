@@ -17,6 +17,5 @@ jobs:
         run: echo "::set-env name=VERSION::$( echo ${GITHUB_REF:10})"
       - name: Set document
         run: go get github.com/sai-lab/go-template@$VERSION
-          
         env:
           GOPROXY: https://proxy.golang.org 
