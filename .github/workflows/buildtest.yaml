@@ -1,9 +1,8 @@
-name: buildtest
-on: 
+name: Build Container Image
+on:
   push:
     branches:
       - '*'
-
     tags:
       - '*'
 
@@ -18,18 +17,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
-      #- name: build 
-      #  run:
-      #   docker build -t ghcr.io/sai-lab/hello:${{ github.ref }} 
-      - name: Declare some variables
-        id: vars
+      - name: Set environment
         shell: bash
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo ::set-env name=VERSION::$( echo ${GITHUB_REF:10})
       - name: build 
         run:
-          docker build -t ghcr.io/sai-lab/hello:${{ steps.vars.outputs.sha_short }} .
+          docker build -t ghcr.io/sai-lab/hello:$VERSION .
       - name: push
         run: 
-          docker push ghcr.io/sai-lab/hello:${{ steps.vars.outputs.sha_short }}
+          docker push ghcr.io/sai-lab/hello:$VERSION
 
