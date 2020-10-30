@@ -18,4 +18,4 @@ jobs:
         format: 'table'
         exit-code: '1'
         ignore-unfixd: true
-        severity: 'CRITTICAL, HIGH'
+        severity: 'CRITTICAL,HIGH'
