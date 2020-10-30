@@ -23,7 +23,7 @@ jobs:
 
     - name: Comment to Pull requests
       uses: actions/github-script@v3
-			with:
+      with:
         github-token: ${{ secret.GITHUB_TOKEN }}
         script: |
           const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
