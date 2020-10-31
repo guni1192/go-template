@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   scan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -15,10 +15,10 @@ jobs:
       uses: aquasecurity/trivy-action@master
       with:
         image-ref: '${{ github.repository }}'
-        format: 'json'
+        format: 'table'
         output: 'out'
         exit-code: '1'
-        ignore-unfixd: true
+        ignore-unfixed: true
         severity: 'CRITICAL,HIGH'
 
     #- name: Comment to Pull requests
