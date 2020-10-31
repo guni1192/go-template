@@ -1,5 +1,5 @@
 name: Velnerability Scanning
-on: [pull_request]
+on: [pull_request,push]
 
 jobs:
   scan:
@@ -24,7 +24,7 @@ jobs:
     - name: Comment to Pull requests
       uses: actions/github-script@v3
       with:
-        github-token: ${{ secret.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
           github.issues.createComment({ issue_number, owner, repo, body: out }); 
