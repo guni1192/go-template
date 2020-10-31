@@ -16,15 +16,6 @@ jobs:
       with:
         image-ref: '${{ github.repository }}'
         format: 'table'
-        output: 'out'
         exit-code: '1'
         ignore-unfixed: true
         severity: 'CRITICAL,HIGH'
-
-    #- name: Comment to Pull requests
-      #uses: actions/github-script@v3
-      #with:
-        #github-token: ${{ secrets.GITHUB_TOKEN }}
-        #script: |
-          #const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
-          #github.issues.createComment({ issue_number, owner, repo, body: out }); 
