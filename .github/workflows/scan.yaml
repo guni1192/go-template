@@ -8,11 +8,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build an image from Dockerfile
         run: 
-          docker build -t github.com/sai-lab/hello:$VERSION .
+          docker build -t github.com/sai-lab/hello .
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'github.com/sai-lab/hello:$VERSION'
+          image-ref: 'github.com/sai-lab/hello'
           format: 'table'
           exit-code: '0'
           ignore-unfixed: true
