@@ -15,7 +15,6 @@ jobs:
 
       - name: Set environment
         shell: bash
-        run: echo "::set-env name=VERSION::$( echo ${GITHUB_REF:10})"
 
       - name: Build an image from Dockerfile
         run: 
