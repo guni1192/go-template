@@ -1,0 +1,22 @@
+name: Generate Document
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go 1.15
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.15
+      - name: Set environment
+        shell: bash
+        run: echo "::set-env name=VERSION::$( echo ${GITHUB_REF:10})"
+      - name: Set document
+        run: go get github.com/sai-lab/go-template@$VERSION
+        env:
+          GOPROXY: https://proxy.golang.org
+          GO111MODULE: on 
