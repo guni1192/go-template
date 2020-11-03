@@ -12,7 +12,7 @@ This repository is template repository for golang developper in Saisho labo.
 
 First, push `use this template` button in this repository.
 Next rename variables for your application.
-Showing example scripts follow.
+Here's the startup script.
 
 ```bash
 (
@@ -24,9 +24,20 @@ Showing example scripts follow.
 )
 ```
 
+### Docker Build in local
+
 ```bash
 docker build -t ghcr.io/your-user-name/your-application-name .
+docker run ghcr.io/your-user-name/your-application-name
 ```
+
+## CI
+
+- Lint (`go vet`, `golangci-lint`)
+- Unit Tests
+- Publish library documents
+- Build and push container image to `ghcr.io`
+- Vulnerability scanning in container image
 
 ## Documentation
 
