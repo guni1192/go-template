@@ -13,8 +13,13 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
 
+      - name: Set environment
+        shell: bash
+        run: echo "::set-env name=VERSION::$( echo ${GITHUB_REF:10})"
+
       - name: Build an image from Dockerfile
-        run: docker build -t ghcr.io/sai-lab/hello:$VERSION .
+        run: 
+          docker build -t ghcr.io/sai-lab/hello:$VERSION .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
