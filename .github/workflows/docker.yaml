@@ -1,4 +1,4 @@
-name: Build Container Image
+name: Container
 on:
   push:
     tags:
@@ -18,10 +18,9 @@ jobs:
       - name: Set environment
         shell: bash
         run: echo "::set-env name=VERSION::$( echo ${GITHUB_REF:10})"
-      - name: build 
+      - name: Build container image
         run:
           docker build -t ghcr.io/sai-lab/hello:$VERSION .
-      - name: push
-        run: 
+      - name: Push container image
+        run:
           docker push ghcr.io/sai-lab/hello:$VERSION
-

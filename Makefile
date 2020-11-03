@@ -1,17 +1,17 @@
+GO=go
 GOOS=$(shell go env GOOS)
 GOARCH=$(shell go env GOARCH)
 GO_LDFLAGS=-ldflags="-s -w"
-
-TARGET=hello
+TARGET_DIR=bin/
 
 .PHONY: build test clean
 
 build:
 	mkdir -p bin
-	GOOS=$(GOOS) GO_ARCH=$(GOARCH) go build $(GO_LDFLAGS) -o bin/$(TARGET) ./...
+	GOOS=$(GOOS) GO_ARCH=$(GOARCH) $(GO) build $(GO_LDFLAGS) -o $(TARGET_DIR) ./...
 
 test:
-	go test -v ./...
+	$(GO) test -v ./...
 
 clean:
-	rm -r bin
+	rm -rf bin
