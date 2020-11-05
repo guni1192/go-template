@@ -23,6 +23,7 @@ Here's the startup script.
     export REPOSITORY=$USER/$APPLICATION
     grep -l 'hello' Dockerfile .github/workflows/*.yaml | xargs sed -i.bak -e "s/hello/$APPLICATION/g"
     grep -l 'sai-lab/go-template' * | xargs sed -i.bak -e "s@sai-lab/go-template@$REPOSITORY@g"
+    mv cmd/hello cmd/$APPLICATION
 )
 ```
 
