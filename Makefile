@@ -7,7 +7,7 @@ TARGET_DIR=bin/
 .PHONY: build test clean
 
 fmt:
-	goimports -w cmd/*.go pkg/*/*.go
+	goimports -w cmd/*/*.go pkg/*/*.go
 	gofmt -l -w .
 
 build:
