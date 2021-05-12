@@ -1,22 +1,24 @@
 GO=go
-GOOS=$(shell go env GOOS)
 GOARCH=$(shell go env GOARCH)
+GOOS=$(shell go env GOOS)
+GO_IMPORTS=goimports
 GO_LDFLAGS=-ldflags="-s -w"
 TARGET_DIR=bin/
 
-.PHONY: build test clean
-
-fmt:
-	goimports -w cmd/*/*.go pkg/*/*.go
-	gofmt -l -w .
+.PHONY: build test fmt vet clean
 
 build:
 	mkdir -p bin
-	fmt
-	GOOS=$(GOOS) GO_ARCH=$(GOARCH) $(GO) build $(GO_LDFLAGS) -o $(TARGET_DIR) ./...
+	CGO_ENABLED=0 GOOS=$(GOOS) GO_ARCH=$(GOARCH) $(GO) build $(GO_LDFLAGS) -o $(TARGET_DIR) ./...
 
 test:
 	$(GO) test -v ./...
+
+fmt:
+	$(GO_IMPORTS) -w .
+
+vet:
+	$(GO) vet -v ./...
 
 clean:
 	rm -rf bin
